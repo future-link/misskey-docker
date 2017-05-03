@@ -1,4 +1,5 @@
 #!/bin/sh
+#Misskey-run
 cd ~
 
 # Start DB

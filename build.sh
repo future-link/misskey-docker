@@ -1,5 +1,7 @@
 #!/bin/sh
+# Misskey-Builder
 
+# Initalize
 cd ~
 mkdir -p /data/db
 mkdir /file
@@ -11,8 +13,6 @@ echo "http://dl-cdn.alpinelinux.org/alpine/edge/community" >> /etc/apk/repositor
 apk add --no-cache mongodb --allow-untrusted
 apk add --no-cache redis graphicsmagick openssl nodejs python alpine-sdk
 npm install -g forever node-gyp
-
-git clone https://github.com/atnanasi/misskey-local-config.git ~/.misskey
 
 # Build Misskey-Web
 git clone git://github.com/misskey-delta/Misskey-Web.git
