@@ -1,0 +1,22 @@
+{
+    "mongo": {
+        "uri": "mongodb://localhost/misskey-api"
+    },
+    "redis": {
+        "host": "localhost",
+        "port": 6379
+    },
+    "fileServer": {
+        "passkey": "35f0246f4f9f1744a557c4410c472c",
+        "url": "http://misskey.local:50001",
+        "ip": "127.0.0.1",
+        "port": 50012
+    },
+    "apiPasskey": "e2e4ca63400e50b4be419da939a743",
+    "port": {
+        "http": 50010
+    },
+    "https": {
+        "enable": false
+    }
+}
