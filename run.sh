@@ -2,10 +2,6 @@
 #Misskey-run
 cd ~
 
-# Start DB
-mongod &
-redis-server &
-
 # Start Misskey!
 forever start Misskey-API
 forever start Misskey-Web
