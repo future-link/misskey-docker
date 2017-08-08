@@ -1,4 +1,4 @@
-FROM mhart/alpine-node
+FROM alpine
 
 RUN cd ~ && \
 	apk --no-cache add git && \
