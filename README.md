@@ -1,5 +1,6 @@
-# misskey-docker
 [![TravisCI-Badge](https://api.travis-ci.org/misskey-delta/misskey-docker.svg?branch=master)](https://travis-ci.org/misskey-delta/misskey-docker)
+
+# misskey-docker
 Docker for Misskey-delta
 
 ## How to use
