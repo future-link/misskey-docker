@@ -11,7 +11,7 @@ clean:
 build: clone misskey-web/.build/build.json
 	docker-compose build
 
-clone: misskey-web misskey-gen misskey-api misskey-storage
+clone: misskey-web misskey-api misskey-storage
 misskey-%:
 	git clone $(GITFLAGS) https://github.com/misskey-delta/misskey-$* $@
 misskey-web/.build/build.json:
@@ -20,5 +20,5 @@ misskey-web/.build/build.json:
 misskey-storage:
 	git clone $(GITFLAGS) https://github.com/future-link/misskey-storage $@
 
-gen:
+gen: misskey-gen
 	./gen.sh
