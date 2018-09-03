@@ -16,10 +16,13 @@ RUN npm prune
 
 # multi-stage build
 FROM node:${NODE_VERSION}
+
+WORKDIR /app
+
 RUN apk update && apk add --no-cache \
         graphicsmagick \
 		openssl
 
-COPY --from=0 . .
+COPY --from=0 /app .
 
-CMD npm start
+CMD sleep 10 && npm start

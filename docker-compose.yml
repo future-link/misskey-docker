@@ -1,0 +1,78 @@
+version: '3'
+
+services:
+  web:
+    build:
+      context: misskey-web
+      dockerfile: ../dockerfiles/web.dockerfile
+    volumes:
+      - ./conf:/root/.misskey
+    depends_on:
+      - db
+      - redis
+    networks:
+      - misskey-delta
+    ports:
+      - "5001:5001"
+
+  api:
+    build:
+      context: misskey-api
+      dockerfile: ../dockerfiles/api.dockerfile
+    volumes:
+      - ./conf:/root/.misskey
+    depends_on:
+      - db
+      - redis
+    networks:
+      - misskey-delta
+
+  storage:
+    build:
+      context: misskey-storage
+      dockerfile: ../dockerfiles/storage.dockerfile
+    volumes:
+      - ./data/storage/cache:/mnt/cache
+    environment:
+      - MS_INTERNAL_PORT=5003
+      - MS_PUBLIC_PORT=5004
+      - MS_PASSKEY=1863a5bbab27af9a135f7be30193f2
+      - MS_STORAGE_S3_BUCKET_NAME=misskey
+      - MS_STORAGE_TYPE=S3
+      - MS_STORAGE_CACHE_PATH=/mnt/cache
+      - MS_STORAGE_S3_ENDPOINT=http://minio:9000
+      - MS_STORAGE_S3_BUCKET=misskey
+      - AWS_ACCESS_KEY_ID=minioaccesskey
+      - AWS_SECRET_ACCESS_KEY=miniosecretkey
+    networks:
+      - misskey-delta
+    ports:
+      - "5004:5004"
+
+  minio:
+    image: minio/minio
+    environment:
+      - MINIO_ACCESS_KEY=minioaccesskey
+      - MINIO_SECRET_KEY=miniosecretkey
+    volumes:
+      - ./data/minio/export:/mnt/export
+      - ./data/minio/config:/root/.minio
+    entrypoint: sh
+    command: "-c 'mkdir -p /data/misskey && minio server /mnt/export'"
+    networks:
+      - misskey-delta
+
+  db:
+    image: mongo
+    volumes:
+      - ./data/mongo:/data/db
+    networks:
+      - misskey-delta
+
+  redis:
+    image: redis
+    networks:
+      - misskey-delta
+
+networks:
+  misskey-delta: {}
