@@ -4,7 +4,7 @@ services:
   web:
     build:
       context: misskey-web
-      dockerfile: ../dockerfiles/web.dockerfile
+      dockerfile: ${PWD}/dockerfiles/web.dockerfile
     volumes:
       - ./conf:/root/.misskey
     depends_on:
@@ -18,7 +18,7 @@ services:
   api:
     build:
       context: misskey-api
-      dockerfile: ../dockerfiles/api.dockerfile
+      dockerfile: ${PWD}/dockerfiles/api.dockerfile
     volumes:
       - ./conf:/root/.misskey
     depends_on:
@@ -30,7 +30,7 @@ services:
   storage:
     build:
       context: misskey-storage
-      dockerfile: ../dockerfiles/storage.dockerfile
+      dockerfile: ${PWD}/dockerfiles/storage.dockerfile
     volumes:
       - ./data/storage/cache:/mnt/cache
     environment:
