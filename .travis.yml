@@ -1,10 +1,19 @@
-language: python
-python:
-        - 3.5
+language: generic
 
-services:
-        - docker
+sudo: required
+dist: trusty
+
+install:
+    # prepare to use docker after 18.03 beacuse use dockerfile outside of context.
+    # travis supports 17.09 at now.
+    # see also: https://github.com/docker/cli/pull/886
+    - |
+        curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo apt-key add -
+        sudo apt-key fingerprint 0EBFCD88
+        add-apt-repository "deb [arch=amd64] https://download.docker.com/linux/ubuntu $(lsb_release -cs) stable
+        sudo apt-get update
+        sudo apt-get install docker-ce
 
 script:
-        - make gen
-        - make build
+    - make gen
+    - make build
