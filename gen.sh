@@ -24,7 +24,7 @@ export MISSKEY_GEN_THEME_COLOR="#4b7559"
 export MISSKEY_GEN_FILE_STORAGE_PATH=/app/storage
 
 docker run -it --rm \
-    -v "$(pwd)/deps/misskey-gen:/app" \
+    -v "$(pwd)/misskey-gen:/app" \
     -v "$(pwd)/conf:/app/store" \
     -w /app \
     -e "MISSKEY_GEN_URLS_PRIMARY=$MISSKEY_GEN_URLS_PRIMARY" \

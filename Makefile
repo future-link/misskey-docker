@@ -19,3 +19,6 @@ misskey-web/.build/build.json:
 	cp ./conf/web.json misskey-web/.build/build.json
 misskey-storage:
 	git clone $(GITFLAGS) https://github.com/future-link/misskey-storage $@
+
+gen:
+	./gen.sh

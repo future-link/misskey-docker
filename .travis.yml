@@ -6,4 +6,5 @@ services:
         - docker
 
 script:
+        - make gen
         - make build
