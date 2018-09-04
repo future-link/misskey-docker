@@ -12,16 +12,18 @@ ENV NODE_ENV=production
 ADD . .
 
 RUN npm prune
+RUN rm -rf .git
 
 # multi-stage build
 FROM node:${NODE_VERSION}
 
 ENV NODE_ENV=production
-RUN apk update && apk add --no-cache \
+RUN apk update && \
+    apk add --no-cache \
         graphicsmagick \
-		openssl
+        openssl
 
 WORKDIR /app
 COPY --from=0 /app .
 
-CMD sleep 10 && npm start
+CMD npm start
