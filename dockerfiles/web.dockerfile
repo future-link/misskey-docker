@@ -14,7 +14,7 @@ RUN mkdir -p /root/.misskey && cp ./.build/build.json /root/.misskey/web.json
 RUN npm run build
 
 RUN npm prune
-RUN rm -rf .git src
+RUN rm -rf src
 
 # multi-stage build
 FROM node:${NODE_VERSION}

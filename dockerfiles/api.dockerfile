@@ -13,7 +13,7 @@ ADD . .
 RUN npm run build
 
 RUN npm prune
-RUN rm -rf .git
+RUN rm -rf src
 
 # multi-stage build
 FROM node:${NODE_VERSION}

@@ -12,7 +12,6 @@ ENV NODE_ENV=production
 ADD . .
 
 RUN npm prune
-RUN rm -rf .git
 
 # multi-stage build
 FROM node:${NODE_VERSION}
