@@ -63,7 +63,7 @@ services:
       - misskey-delta
 
   db:
-    image: mongo
+    image: mongo:3.2
     volumes:
       - ./data/mongo:/data/db
     networks:
