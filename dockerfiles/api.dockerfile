@@ -1,6 +1,7 @@
-ARG NODE_VERSION=8-alpine
+ARG NODE_VERSION=10-alpine
 
 FROM node:${NODE_VERSION}
+RUN apk add --no-cache python2 build-base gcc
 
 WORKDIR /app
 
